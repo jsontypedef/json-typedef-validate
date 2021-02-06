@@ -3,10 +3,10 @@ use clap::{crate_version, load_yaml, App, AppSettings};
 use jtd::{Schema, ValidateOptions};
 use serde::Serialize;
 use serde_json::Deserializer;
+use std::borrow::Cow;
 use std::fs::File;
 use std::io::{stdin, BufReader, Read};
 use std::process::exit;
-use std::borrow::Cow;
 
 fn main() -> Result<()> {
     let cli_yaml = load_yaml!("cli.yaml");
@@ -57,7 +57,9 @@ fn main() -> Result<()> {
         let errors = jtd::validate(
             &schema,
             &instance,
-            ValidateOptions::new().with_max_depth(max_depth).with_max_errors(max_errors),
+            ValidateOptions::new()
+                .with_max_depth(max_depth)
+                .with_max_errors(max_errors),
         )
         .with_context(|| format!("Failed to validate instance"))?;
 
