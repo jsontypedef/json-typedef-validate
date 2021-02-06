@@ -1,0 +1,22 @@
+name: jtd-validate
+args:
+  - schema:
+      help: Path to JSON Typedef schema. To read from stdin, use "-".
+      required: true
+  - instances:
+      help: Path to sequence of JSON inputs to validate. To read from stdin, use "-".
+      default_value: "-"
+  - quiet:
+      help: Disable outputting validation errors.
+      long: quiet
+      short: q
+  - max-depth:
+      help: How many refs to follow recursively before erroring. If zero, refs are followed until stack overflow.
+      long: max-depth
+      short: d
+      default_value: "0"
+  - max-errors:
+      help: Maximum number of errors to look for in each instance. If zero, all validation errors are returned.
+      long: max-errors
+      short: e
+      default_value: "0"
